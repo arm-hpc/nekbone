@@ -34,6 +34,12 @@ c     call platform_timer(iverbose)   ! iverbose=0 or 1
 
       icount = 0
 
+      if(nid.eq.0) then
+          call marker_init();
+          call marker_start();
+      endif
+      call mpi_barrier(mpi_comm_world,ierr);
+
 c     SET UP and RUN NEKBONE
       do nx1=nx0,nxN,nxD
          call init_dim
@@ -65,6 +71,11 @@ c     SET UP and RUN NEKBONE
            mfloplist(icount) = mflops*np
          enddo
       enddo
+
+      call mpi_barrier(mpi_comm_world,ierr);
+      if(nid.eq.0) then
+          call marker_stop();
+      endif
 
       avmflop = 0.0
       do i = 1,icount

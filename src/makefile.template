@@ -28,7 +28,7 @@ PPS_C = $(patsubst %,-D%,$(PPS))
 
 #NEW #########################################################################
 BONE = cg.o driver.o math.o mxm_wrapper.o prox_dssum.o\
-prox_setup.o semhat.o speclib.o 
+prox_setup.o semhat.o speclib.o marker_stub.o
 
 ifeq ($(IFNEKCOMM),true)
 BONE = driver_comm.o math.o mxm_wrapper.o \
@@ -138,6 +138,7 @@ $(OBJDIR)/comm_mpi.o	:$S/comm_mpi.f;			$(F77) -c $(FL2) $< -o $@
 $(OBJDIR)/mpi_dummy.o	:$S/mpi_dummy.f;		$(F77) -c $(FL2) $< -o $@
 $(OBJDIR)/delay.o	:$S/delay.f;			$(F77) -c $(FL2) $< -o $@
 $(OBJDIR)/delay_dum.o	:$S/delay_dum.f;		$(F77) -c $(FL2) $< -o $@
+$(OBJDIR)/marker_stub.o	:$S/marker_stub.c;		$(CC) -c $(cFL2) $< -o $@
 # MXM       ############################################################################
 $(OBJDIR)/mxm_wrapper.o	  :$S/mxm_wrapper.f;		$(F77) -c $(FL2) $< -o $@ 
 $(OBJDIR)/mxm_std.o	  :$S/mxm_std.f;		$(F77) -c $(FL4) $< -o $@
