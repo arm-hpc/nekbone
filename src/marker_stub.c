@@ -70,14 +70,24 @@ void marker_init_()
     MARKER_INIT
 }
 
-void marker_start_()
+void marker_start_(int tid)
 {
-    MARKER_START(0)
+    MARKER_START(tid)
 }
 
-void marker_stop_()
+void marker_stop_(int tid)
 {
-    MARKER_STOP(0)
+    MARKER_STOP(tid)
+}
+
+void marker_begin_(int i, int tid)
+{
+    MARKER_BEGIN(i, tid)
+}
+
+void marker_end_(int i, int tid)
+{
+    MARKER_END(i, tid)
 }
 
 #ifdef __cplusplus
